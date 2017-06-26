@@ -98,6 +98,11 @@ class DuplicateKey(PotionException):
     def __init__(self, **kwargs):
         self.data = kwargs
 
+    def as_dict(self):
+        dct = super(DuplicateKey, self).as_dict()
+        dct.update(self.data)
+        return dct
+
 
 class BackendConflict(PotionException):
     werkzeug_exception = Conflict
